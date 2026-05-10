@@ -9,36 +9,37 @@
 <style>
 
 body{
-background:#111;
+background:#000;
 color:white;
 font-family:Arial;
-text-align:center;
-padding:20px;
 margin:0;
+padding:20px;
+text-align:center;
 }
 
 h1{
 color:red;
+font-size:50px;
+margin-top:30px;
 }
 
 .box{
-background:#222;
-padding:20px;
-border-radius:10px;
-margin-top:20px;
+background:#1b1b1b;
+padding:25px;
+border-radius:15px;
+margin-top:30px;
 }
 
-input,select,button{
+select,input,button{
 width:90%;
-padding:12px;
-margin-top:12px;
+padding:15px;
+margin-top:15px;
 border:none;
-border-radius:8px;
-font-size:18px;
-outline:none;
+border-radius:10px;
+font-size:20px;
 }
 
-select{
+select,input{
 background:white;
 color:black;
 }
@@ -50,16 +51,17 @@ font-weight:bold;
 }
 
 #result{
-margin-top:20px;
-font-size:24px;
+margin-top:30px;
+font-size:25px;
 color:yellow;
 font-weight:bold;
+line-height:45px;
 }
 
 .footer{
-margin-top:30px;
-color:#888;
-font-size:14px;
+margin-top:50px;
+color:#777;
+font-size:18px;
 }
 
 </style>
@@ -92,9 +94,13 @@ font-size:14px;
 
 </select>
 
-<input type="text" id="record" placeholder="Enter Old Record">
+<input type="text"
+id="record"
+placeholder="Enter Old Record">
 
-<button onclick="showGuess()">SHOW GUESS</button>
+<button onclick="showGuess()">
+SHOW GUESS
+</button>
 
 <div id="result"></div>
 
@@ -119,12 +125,53 @@ if(record==""){
 document.getElementById("result").innerHTML =
 "Record Dalo";
 
-}else{
-
-document.getElementById("result").innerHTML =
-market + "<br><br>Possible Guess:<br>14 24 46 69";
+return;
 
 }
+
+let jodi = [
+"12","14","24","46",
+"69","78","89","17",
+"29","56","33","44",
+"55","66","77","88"
+];
+
+let a =
+jodi[Math.floor(Math.random()*jodi.length)];
+
+let b =
+jodi[Math.floor(Math.random()*jodi.length)];
+
+let c =
+jodi[Math.floor(Math.random()*jodi.length)];
+
+document.getElementById("result").innerHTML =
+
+market +
+
+"<br><br>" +
+
+"Old Record : " + record +
+
+"<br><br>" +
+
+"Jodi Guess" +
+
+"<br><br>" +
+
+a + " - " + b + " - " + c +
+
+"<br><br>" +
+
+"Open Ank : 1 4 7 9" +
+
+"<br>" +
+
+"Close Ank : 2 5 6 8" +
+
+"<br><br>" +
+
+"Panel : 128 470 569";
 
 }
 
