@@ -3,7 +3,6 @@
 <head>
 
 <title>SMART GUESSING</title>
-
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
@@ -24,7 +23,7 @@ margin-top:20px;
 }
 
 .box{
-background:#1b1b1b;
+background:#161616;
 padding:20px;
 border-radius:20px;
 margin-top:25px;
@@ -56,12 +55,29 @@ button:hover{
 opacity:0.9;
 }
 
+.notice{
+background:#111;
+padding:15px;
+border-radius:15px;
+margin-top:20px;
+color:#00ff66;
+font-size:20px;
+line-height:40px;
+}
+
 #result{
 margin-top:30px;
 font-size:24px;
 color:yellow;
 font-weight:bold;
 line-height:45px;
+}
+
+.timer{
+font-size:35px;
+color:#00ff66;
+font-weight:bold;
+margin-top:15px;
 }
 
 table{
@@ -83,24 +99,21 @@ font-size:17px;
 border-bottom:1px solid #444;
 }
 
+.joinbtn{
+background:green;
+margin-top:25px;
+}
+
 .footer{
 margin-top:40px;
 color:#888;
 font-size:16px;
 }
 
-.joinbtn{
-background:green;
-}
-
-.notice{
-background:#111;
-padding:15px;
-border-radius:10px;
-color:#00ff66;
-font-size:18px;
-margin-top:20px;
-line-height:35px;
+.premium{
+color:gold;
+font-size:22px;
+line-height:40px;
 }
 
 </style>
@@ -111,20 +124,36 @@ line-height:35px;
 
 <h1>SMART GUESSING</h1>
 
-<div class="notice">
+<div class="timer" id="clock"></div>
 
+<div class="notice">
 🔥 Welcome To Smart Guessing Website 🔥
 <br>
 Daily Jodi • Panel • Open Ank • Close Ank
 <br>
 Fast Result Update Available
+</div>
+
+<div class="box">
+
+<h2 style="color:red;">
+LOGIN PANEL
+</h2>
+
+<input type="text" id="username" placeholder="Username">
+<input type="password" id="password" placeholder="Password">
+
+<button onclick="loginUser()">
+LOGIN
+</button>
+
+<div id="loginmsg"></div>
 
 </div>
 
 <div class="box">
 
 <select id="market">
-
 <option>Shredevi Day</option>
 <option>Time Bazar</option>
 <option>Madhur Day</option>
@@ -132,7 +161,6 @@ Fast Result Update Available
 <option>Rajdhani Day</option>
 <option>Supreme Day</option>
 <option>Kalyan</option>
-
 <option>Shredevi Night</option>
 <option>Madhur Night</option>
 <option>Supreme Night</option>
@@ -140,12 +168,9 @@ Fast Result Update Available
 <option>Kalyan Night</option>
 <option>Rajdhani Night</option>
 <option>Main Bazar</option>
-
 </select>
 
-<input type="text"
-id="record"
-placeholder="Enter Old Record">
+<input type="text" id="record" placeholder="Enter Old Record">
 
 <button onclick="showGuess()">
 SHOW GUESS
@@ -155,19 +180,22 @@ SHOW GUESS
 
 </div>
 
+<div class="box premium">
+👑 PREMIUM MEMBERSHIP 👑
+<br>
+Daily VIP Guess Available
+<br>
+Contact WhatsApp For Join
+</div>
+
 <div class="box">
 
 <h2 style="color:red;">
 ADMIN RESULT UPDATE
 </h2>
 
-<input type="text"
-id="marketname"
-placeholder="Market Name">
-
-<input type="text"
-id="marketresult"
-placeholder="Result">
+<input type="text" id="marketname" placeholder="Market Name">
+<input type="text" id="marketresult" placeholder="Result">
 
 <button onclick="addResult()">
 ADD RESULT
@@ -199,23 +227,8 @@ LATEST RESULTS
 </tr>
 
 <tr>
-<td>Madhur Day</td>
-<td>67</td>
-</tr>
-
-<tr>
 <td>Milan Day</td>
 <td>78</td>
-</tr>
-
-<tr>
-<td>Rajdhani Day</td>
-<td>34</td>
-</tr>
-
-<tr>
-<td>Supreme Day</td>
-<td>56</td>
 </tr>
 
 <tr>
@@ -223,52 +236,14 @@ LATEST RESULTS
 <td>89</td>
 </tr>
 
-<tr>
-<td>Shredevi Night</td>
-<td>23</td>
-</tr>
-
-<tr>
-<td>Madhur Night</td>
-<td>90</td>
-</tr>
-
-<tr>
-<td>Supreme Night</td>
-<td>11</td>
-</tr>
-
-<tr>
-<td>Milan Night</td>
-<td>58</td>
-</tr>
-
-<tr>
-<td>Kalyan Night</td>
-<td>69</td>
-</tr>
-
-<tr>
-<td>Rajdhani Night</td>
-<td>47</td>
-</tr>
-
-<tr>
-<td>Main Bazar</td>
-<td>88</td>
-</tr>
-
 </table>
 
 </div>
 
-<a href="https://wa.me/919424806795"
-target="_blank">
-
+<a href="https://wa.me/919424806795" target="_blank">
 <button class="joinbtn">
 JOIN WHATSAPP
 </button>
-
 </a>
 
 <div class="footer">
@@ -276,6 +251,25 @@ Smart Guessing Website © 2026
 </div>
 
 <script>
+
+function loginUser(){
+
+let u = document.getElementById("username").value;
+let p = document.getElementById("password").value;
+
+if(u=="admin" && p=="1234"){
+
+document.getElementById("loginmsg").innerHTML =
+"<br><span style='color:lime;'>Login Success</span>";
+
+}else{
+
+document.getElementById("loginmsg").innerHTML =
+"<br><span style='color:red;'>Wrong Login</span>";
+
+}
+
+}
 
 function showGuess(){
 
@@ -300,8 +294,7 @@ let jodi = [
 "29","56","33","44",
 "55","66","77","88",
 "10","20","30","40",
-"50","60","70","80",
-"90"
+"50","60","70","80"
 ];
 
 let panel = [
@@ -311,89 +304,76 @@ let panel = [
 "123","456","789"
 ];
 
-let a =
-jodi[Math.floor(Math.random()*jodi.length)];
+let a = jodi[Math.floor(Math.random()*jodi.length)];
+let b = jodi[Math.floor(Math.random()*jodi.length)];
+let c = jodi[Math.floor(Math.random()*jodi.length)];
+let p = panel[Math.floor(Math.random()*panel.length)];
 
-let b =
-jodi[Math.floor(Math.random()*jodi.length)];
-
-let c =
-jodi[Math.floor(Math.random()*jodi.length)];
-
-let p =
-panel[Math.floor(Math.random()*panel.length)];
-
-document.getElementById("result").innerHTML =
-
+let data =
 market +
-
 "<br><br>" +
-
 "Old Record : " + record +
+"<br><br>🔥 Jodi Guess 🔥<br><br>" +
+ a + " - " + b + " - " + c +
+"<br><br>Open Ank : 1 4 7 9" +
+"<br>Close Ank : 2 5 6 8" +
+"<br><br>🔥 Panel 🔥<br><br>" + p;
 
-"<br><br>" +
+localStorage.setItem("lastGuess", data);
 
-"🔥 Jodi Guess 🔥" +
-
-"<br><br>" +
-
-a + " - " + b + " - " + c +
-
-"<br><br>" +
-
-"Open Ank : 1 4 7 9" +
-
-"<br>" +
-
-"Close Ank : 2 5 6 8" +
-
-"<br><br>" +
-
-"🔥 Panel 🔥" +
-
-"<br><br>" +
-
-p;
+document.getElementById("result").innerHTML = data;
 
 }
 
 function addResult(){
 
-let market =
-document.getElementById("marketname").value;
-
-let result =
-document.getElementById("marketresult").value;
+let market = document.getElementById("marketname").value;
+let result = document.getElementById("marketresult").value;
 
 if(market=="" || result==""){
-
 alert("Fill All Details");
-
 return;
-
 }
 
-let table =
-document.getElementById("resultTable");
+let table = document.getElementById("resultTable");
+let row = table.insertRow(-1);
 
-let row =
-table.insertRow(-1);
-
-let cell1 =
-row.insertCell(0);
-
-let cell2 =
-row.insertCell(1);
+let cell1 = row.insertCell(0);
+let cell2 = row.insertCell(1);
 
 cell1.innerHTML = market;
 cell2.innerHTML = result;
 
-document.getElementById("marketname").value="";
-document.getElementById("marketresult").value="";
+localStorage.setItem("savedTable", table.innerHTML);
 
 alert("Result Added Successfully");
 
 }
+
+window.onload = function(){
+
+let saved = localStorage.getItem("savedTable");
+
+if(saved){
+document.getElementById("resultTable").innerHTML = saved;
+}
+
+let guess = localStorage.getItem("lastGuess");
+
+if(guess){
+document.getElementById("result").innerHTML = guess;
+}
+
+}
+
+setInterval(function(){
+
+let now = new Date();
+
+document.getElementById("clock").innerHTML =
+now.toLocaleTimeString();
+
+},1000);
 
 </script>
 
