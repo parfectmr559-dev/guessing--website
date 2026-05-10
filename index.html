@@ -13,21 +13,21 @@ background:#000;
 color:white;
 font-family:Arial;
 margin:0;
-padding:20px;
+padding:15px;
 text-align:center;
 }
 
 h1{
 color:red;
-font-size:55px;
+font-size:50px;
 margin-top:20px;
 }
 
 .box{
 background:#1b1b1b;
-padding:25px;
+padding:20px;
 border-radius:20px;
-margin-top:30px;
+margin-top:25px;
 box-shadow:0 0 10px #111;
 }
 
@@ -37,7 +37,7 @@ padding:15px;
 margin-top:15px;
 border:none;
 border-radius:10px;
-font-size:20px;
+font-size:18px;
 }
 
 select,input{
@@ -52,9 +52,13 @@ font-weight:bold;
 cursor:pointer;
 }
 
+button:hover{
+opacity:0.9;
+}
+
 #result{
 margin-top:30px;
-font-size:25px;
+font-size:24px;
 color:yellow;
 font-weight:bold;
 line-height:45px;
@@ -69,25 +73,34 @@ border-collapse:collapse;
 th{
 background:red;
 padding:15px;
-font-size:20px;
+font-size:18px;
 }
 
 td{
 background:#222;
 padding:15px;
-font-size:18px;
+font-size:17px;
 border-bottom:1px solid #444;
 }
 
 .footer{
-margin-top:50px;
-color:#777;
-font-size:18px;
+margin-top:40px;
+color:#888;
+font-size:16px;
 }
 
 .joinbtn{
 background:green;
-margin-top:25px;
+}
+
+.notice{
+background:#111;
+padding:15px;
+border-radius:10px;
+color:#00ff66;
+font-size:18px;
+margin-top:20px;
+line-height:35px;
 }
 
 </style>
@@ -97,6 +110,16 @@ margin-top:25px;
 <body>
 
 <h1>SMART GUESSING</h1>
+
+<div class="notice">
+
+🔥 Welcome To Smart Guessing Website 🔥
+<br>
+Daily Jodi • Panel • Open Ank • Close Ank
+<br>
+Fast Result Update Available
+
+</div>
 
 <div class="box">
 
@@ -135,10 +158,30 @@ SHOW GUESS
 <div class="box">
 
 <h2 style="color:red;">
+ADMIN RESULT UPDATE
+</h2>
+
+<input type="text"
+id="marketname"
+placeholder="Market Name">
+
+<input type="text"
+id="marketresult"
+placeholder="Result">
+
+<button onclick="addResult()">
+ADD RESULT
+</button>
+
+</div>
+
+<div class="box">
+
+<h2 style="color:red;">
 LATEST RESULTS
 </h2>
 
-<table>
+<table id="resultTable">
 
 <tr>
 <th>Market</th>
@@ -229,7 +272,7 @@ JOIN WHATSAPP
 </a>
 
 <div class="footer">
-Smart Guessing Website
+Smart Guessing Website © 2026
 </div>
 
 <script>
@@ -245,7 +288,7 @@ document.getElementById("record").value;
 if(record==""){
 
 document.getElementById("result").innerHTML =
-"Record Dalo";
+"Please Enter Old Record";
 
 return;
 
@@ -255,7 +298,17 @@ let jodi = [
 "12","14","24","46",
 "69","78","89","17",
 "29","56","33","44",
-"55","66","77","88"
+"55","66","77","88",
+"10","20","30","40",
+"50","60","70","80",
+"90"
+];
+
+let panel = [
+"128","470","569",
+"167","249","359",
+"555","777","999",
+"123","456","789"
 ];
 
 let a =
@@ -267,6 +320,9 @@ jodi[Math.floor(Math.random()*jodi.length)];
 let c =
 jodi[Math.floor(Math.random()*jodi.length)];
 
+let p =
+panel[Math.floor(Math.random()*panel.length)];
+
 document.getElementById("result").innerHTML =
 
 market +
@@ -277,7 +333,7 @@ market +
 
 "<br><br>" +
 
-"Jodi Guess" +
+"🔥 Jodi Guess 🔥" +
 
 "<br><br>" +
 
@@ -293,7 +349,49 @@ a + " - " + b + " - " + c +
 
 "<br><br>" +
 
-"Panel : 128 470 569";
+"🔥 Panel 🔥" +
+
+"<br><br>" +
+
+p;
+
+}
+
+function addResult(){
+
+let market =
+document.getElementById("marketname").value;
+
+let result =
+document.getElementById("marketresult").value;
+
+if(market=="" || result==""){
+
+alert("Fill All Details");
+
+return;
+
+}
+
+let table =
+document.getElementById("resultTable");
+
+let row =
+table.insertRow(-1);
+
+let cell1 =
+row.insertCell(0);
+
+let cell2 =
+row.insertCell(1);
+
+cell1.innerHTML = market;
+cell2.innerHTML = result;
+
+document.getElementById("marketname").value="";
+document.getElementById("marketresult").value="";
+
+alert("Result Added Successfully");
 
 }
 
