@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Smart Guessing</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+
+body{
+background:#111;
+color:white;
+font-family:Arial;
+text-align:center;
+padding:20px;
+margin:0;
+}
+
+h1{
+color:red;
+}
+
+.box{
+background:#222;
+padding:20px;
+border-radius:10px;
+margin-top:20px;
+}
+
+input,select,button{
+width:90%;
+padding:12px;
+margin-top:12px;
+border:none;
+border-radius:8px;
+font-size:18px;
+outline:none;
+}
+
+select{
+background:white;
+color:black;
+}
+
+button{
+background:red;
+color:white;
+font-weight:bold;
+}
+
+#result{
+margin-top:20px;
+font-size:24px;
+color:yellow;
+font-weight:bold;
+}
+
+.footer{
+margin-top:30px;
+color:#888;
+font-size:14px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>SMART GUESSING</h1>
+
+<div class="box">
+
+<select id="market">
+
+<option>Shredevi Day</option>
+<option>Time Bazar</option>
+<option>Madhur Day</option>
+<option>Milan Day</option>
+<option>Rajdhani Day</option>
+<option>Supreme Day</option>
+<option>Kalyan</option>
+
+<option>Shredevi Night</option>
+<option>Madhur Night</option>
+<option>Supreme Night</option>
+<option>Milan Night</option>
+<option>Kalyan Night</option>
+<option>Rajdhani Night</option>
+<option>Main Bazar</option>
+
+</select>
+
+<input type="text" id="record" placeholder="Enter Old Record">
+
+<button onclick="showGuess()">SHOW GUESS</button>
+
+<div id="result"></div>
+
+</div>
+
+<div class="footer">
+Smart Guessing Website
+</div>
+
+<script>
+
+function showGuess(){
+
+let market =
+document.getElementById("market").value;
+
+let record =
+document.getElementById("record").value;
+
+if(record==""){
+
+document.getElementById("result").innerHTML =
+"Record Dalo";
+
+}else{
+
+document.getElementById("result").innerHTML =
+market + "<br><br>Possible Guess:<br>14 24 46 69";
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
